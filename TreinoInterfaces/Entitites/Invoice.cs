@@ -13,10 +13,7 @@ namespace TreinoInterfaces.Entitites
         }
 
         public double TotalPaymant //EXEMPLO DE PROPRIEDADE CALCULADA, PODENDO SUBSTITUIR UMA FUNCAO SIMPLES
-        {   get
-            {
-                return BasicPaymant + Tax;
-            }
+        {   get { return BasicPaymant + Tax; }
         }
 
         public override string ToString()

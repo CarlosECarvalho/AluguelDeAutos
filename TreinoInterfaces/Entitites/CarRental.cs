@@ -14,7 +14,6 @@ namespace TreinoInterfaces.Entitites
             Start = start;
             Finish = finish;
             Vehicle = vehicle;
-            Invoice = null; //esta propriedade vai ser instanciada pelo objeto Invoice
         }
     }
 }
