@@ -8,12 +8,13 @@ namespace TreinoInterfaces.Services
         public double PricePerHour { get; private set;}
         public double PricePerDay { get; private set; }
 
-        private BrazilTaxService _brazilTaxService = new BrazilTaxService();
+        private ITaxServices _taxService; //instancio uma variavel privada eatribuo ela no construtor, fazendo uma inversao de controle por meio de inheção de dependencia
 
-        public RentalService(double pricePerHour, double pricePerDay)
+        public RentalService(double pricePerHour, double pricePerDay, ITaxServices taxService)
         {
             PricePerHour = pricePerHour;
             PricePerDay = pricePerDay;
+            _taxService = taxService;
         }
 
         public void ProcessInvoice(CarRental carRental)
@@ -28,7 +29,7 @@ namespace TreinoInterfaces.Services
                 basicPaymant = PricePerDay * Math.Ceiling(duration.TotalDays);// faco o arredondamento para cima do valor de dias e multiplico pelo valor do pagamento
             }
 
-            double Tax = _brazilTaxService.Tax(basicPaymant); //aciono o serviço de calculo de tributos com o objeto recebendo o valor base do pagamento, que irá retornar o valor do imposto adicionado.
+            double Tax = _taxService.Tax(basicPaymant); //aciono o serviço de calculo de tributos com o objeto recebendo o valor base do pagamento, que irá retornar o valor do imposto adicionado.
 
             carRental.Invoice = new Invoice(basicPaymant, Tax);
         }

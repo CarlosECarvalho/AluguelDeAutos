@@ -23,7 +23,7 @@ namespace TreinoInterfaces
             double dayPrice = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             CarRental carRental = new CarRental(startTime, endTime, new Vehicles(carModel)); //instancio o veiculo no momento da passagem de parametros
-            RentalService rentalCost = new RentalService(hourPrice, dayPrice); //inicializo o servico que ira gerar a locação e o valor para a nota
+            RentalService rentalCost = new RentalService(hourPrice, dayPrice, new BrazilTaxService()); //inicializo o servico que ira gerar a locação e o valor para a nota, inicializando também o serviço BrazilTaxService
 
             rentalCost.ProcessInvoice(carRental); //chamo o objeto rentalCost com a propriedade ProcessInvoice para calcular a locacao e gerar a nota
 
